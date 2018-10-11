@@ -15,6 +15,9 @@ public class Ship {
 		this.kind = kind;
 		occupiedSquares = new ArrayList<Square>();
 	}
+	public String getKind() {
+		return this.kind;
+	}
 
 	public List<Square> getOccupiedSquares() {
 		return occupiedSquares;
