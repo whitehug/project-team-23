@@ -23,10 +23,12 @@ public class Board {
 			{
 				for(Square sq: existingShip.getOccupiedSquares())
 				{
+					System.out.println("Part of ship located at: " + sq.getColumn() + ", " + sq.getRow());
 					for(Square sq2: ship.getOccupiedSquares())
 					{
-						if(sq.getColumn() == sq2.getColumn() && sq.getRow() == sq.getRow())
+						if(sq.getColumn() == sq2.getColumn() && sq.getRow() == sq2.getRow())
 						{
+							System.out.println("COLLISION AT " + sq.getColumn() + ", " + sq.getRow());
 							return false;
 						}
 					}
@@ -52,12 +54,11 @@ public class Board {
 	}
 
 	public List<Ship> getShips() {
-		//TODO implement
-		return null;
+		return shipList;
 	}
 
 	public void setShips(List<Ship> ships) {
-		//TODO implement
+		shipList = ships;
 	}
 
 	public List<Result> getAttacks() {

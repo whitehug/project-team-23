@@ -2,6 +2,7 @@ package cs361.battleships.models;
 
 public class Result {
 
+
 	public AtackStatus getResult() {
 		//TODO implement
 		return null;

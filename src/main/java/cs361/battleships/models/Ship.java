@@ -27,22 +27,72 @@ public class Ship {
 				if(isVertical)
 				{
 					// Validate location:
-					if(x > 9)
+					if(x > 9 || x < 1)
 						return false;
 					if(y > 'J')
 						return false;
 					occupiedSquares.add(new Square(x, y));
-					occupiedSquares.add(new Square(x-1, y));
+					occupiedSquares.add(new Square(x+1, y));
 					return true;
 				}
 				else
 				{
-					if(x > 10)
+					if(x > 10 || x < 1)
 						return false;
 					if(y > 'I')
 						return false;
 					occupiedSquares.add(new Square(x, y));
 					occupiedSquares.add(new Square(x,(char)(y+1)));
+					return true;
+				}
+			case "DESTROYER":
+				if(isVertical)
+				{
+					// Validate location:
+					if(x > 8 || x < 1)
+						return false;
+					if(y > 'J')
+						return false;
+					occupiedSquares.add(new Square(x, y));
+					occupiedSquares.add(new Square(x+1, y));
+					occupiedSquares.add(new Square(x+2, y));
+					return true;
+				}
+				else
+				{
+					if(x > 10 || x < 1)
+						return false;
+					if(y > 'H')
+						return false;
+					occupiedSquares.add(new Square(x, y));
+					occupiedSquares.add(new Square(x,(char)(y+1)));
+					occupiedSquares.add(new Square(x, (char)(y+2)));
+					return true;
+				}
+		case "BATTLESHIP":
+				if(isVertical)
+				{
+					// Validate location:
+					if(x > 7 || x < 1)
+						return false;
+					if(y > 'J')
+						return false;
+					occupiedSquares.add(new Square(x, y));
+					occupiedSquares.add(new Square(x+1, y));
+					occupiedSquares.add(new Square(x+2, y));
+					occupiedSquares.add(new Square(x+3, y));
+					return true;
+				}
+				else
+				{
+					if(x > 10 || x < 1)
+						return false;
+					if(y > 'G')
+						return false;
+					occupiedSquares.add(new Square(x, y));
+					occupiedSquares.add(new Square(x,(char)(y+1)));
+					occupiedSquares.add(new Square(x, (char)(y+2)));
+					occupiedSquares.add(new Square(x, (char)(y+3)));
 					return true;
 				}
 		}

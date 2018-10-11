@@ -15,11 +15,16 @@ public class BoardTest {
         // On top of another ship
         board.placeShip(new Ship("MINESWEEPER"), 5, 'C',false);
         assertFalse(board.placeShip(new Ship("MINESWEEPER"), 5, 'C', false));
+
     }
     @Test
     public void testValidPlacement() {
         Board board = new Board();
         assertTrue(board.placeShip(new Ship("MINESWEEPER"),5, 'C', false ));
+        assertTrue(board.placeShip(new Ship("BATTLESHIP"), 1, 'A', true));
+        assertTrue(board.placeShip(new Ship("DESTROYER"), 5, 'A', true));
+        assertTrue(board.placeShip(new Ship("MINESWEEPER"), 10, 'E', false));
+
     }
 
 
