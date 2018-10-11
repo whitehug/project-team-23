@@ -56,32 +56,38 @@ public class Board {
 		Result result = new Result();
 		AtackStatus attk;
 
-		System.out.println("ATTACKING: " + x + " " + y);
-		//loop through ship list
-		for(Ship existingShip: shipList) {
-			//loop through squares that ships occupy
-			for(Square sq: existingShip.getOccupiedSquares()) {
+		if (((x >= 1) && (x <= 10)) && ((y >= 'A') && (y <= 'J'))) {
+			System.out.println("ATTACKING: " + x + " " + y);
+			//loop through ship list
+			for (Ship existingShip : shipList) {
+				//loop through squares that ships occupy
+				for (Square sq : existingShip.getOccupiedSquares()) {
 
-				//if x == shipx && y == shipy
-				if ( (x == sq.getRow()) && (y == sq.getColumn())){
-					result.setShip(existingShip);
-					existingShip.getOccupiedSquares().remove(sq);
+					//if x == shipx && y == shipy
+					if ((x == sq.getRow()) && (y == sq.getColumn())) {
+						result.setShip(existingShip);
+						existingShip.getOccupiedSquares().remove(sq);
 
-					//its a hit
-					attk = AtackStatus.HIT;
-					result.setResult(attk);
-					//attkList.add(result);  //meant to add to a list of attacks that have been made
-											  //but is messing up the code at the moment
+						//its a hit
+						attk = AtackStatus.HIT;
+						result.setResult(attk);
+						//attkList.add(attkList);  //meant to add to a list of attacks that have been made
+						//but is messing up the code at the moment
+					} else {
+
+						//it's a miss
+						attk = AtackStatus.MISS;
+						result.setResult(attk);
+						//attkList.add(attkList);
+					}
 				}
-				else {
 
-					//it's a miss
-					attk = AtackStatus.MISS;
-					result.setResult(attk);
-					//attkList.add(result);
-				}
 			}
-
+		}
+		else{
+			attk = AtackStatus.INVALID;
+			result.setResult(attk);
+			//attkList.add(a)
 		}
 		System.out.println(result.getResult());
 		return result;
@@ -100,8 +106,6 @@ public class Board {
 	}
 
 	public void setAttacks(List<Result> attacks) {
-		//for (Result thisAttk : attacks){
-			//attkList.add(thisAttk);
-		//}
+
 	}
 }

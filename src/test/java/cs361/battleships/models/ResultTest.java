@@ -2,7 +2,6 @@ package cs361.battleships.models;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
 
 public class ResultTest {
@@ -28,6 +27,13 @@ public class ResultTest {
 
     @Test
     public void InvalidTest(){
+        Board b = new Board();
+        Ship ship = new Ship("MINESWEEPER");
+        b.placeShip(ship,10,'D',false);
+        Result r = b.attack(12,'C');
+        assertEquals(AtackStatus.INVALID,r.getResult());
+        Result s = b.attack(8, 'Z');
+        assertEquals(AtackStatus.INVALID,s.getResult());
 
     }
 }
