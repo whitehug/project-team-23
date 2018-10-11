@@ -10,12 +10,17 @@ public class BoardTest {
     @Test
     public void testInvalidPlacement() {
         Board board = new Board();
+        // Off the edge
         assertFalse(board.placeShip(new Ship("MINESWEEPER"), 11, 'C', true));
+        // On top of another ship
+        board.placeShip(new Ship("MINESWEEPER"), 5, 'C',false);
+        assertFalse(board.placeShip(new Ship("MINESWEEPER"), 5, 'C', false));
     }
     @Test
     public void testValidPlacement() {
         Board board = new Board();
         assertTrue(board.placeShip(new Ship("MINESWEEPER"),5, 'C', false ));
     }
+
 
 }

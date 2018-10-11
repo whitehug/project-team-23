@@ -4,19 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
+	private List<Ship> shipList;
 
 	/*
 	DO NOT change the signature of this method. It is used by the grading scripts.
 	 */
 	public Board() {
-		// TODO Implement
+		shipList = new ArrayList<Ship>();
 	}
 
 	/*
 	DO NOT change the signature of this method. It is used by the grading scripts.
 	 */
 	public boolean placeShip(Ship ship, int x, char y, boolean isVertical) {
-		return ship.setOccupiedSquares(x, y, isVertical);
+		if (ship.setOccupiedSquares(x, y, isVertical))
+		{
+			for(Ship existingShip: shipList)
+			{
+				for(Square sq: existingShip.getOccupiedSquares())
+				{
+					for(Square sq2: ship.getOccupiedSquares())
+					{
+						if(sq.getColumn() == sq2.getColumn() && sq.getRow() == sq.getRow())
+						{
+							return false;
+						}
+					}
+
+				}
+			}
+			shipList.add(ship);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 
 	}
 
