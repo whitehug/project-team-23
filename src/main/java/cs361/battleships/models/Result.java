@@ -7,7 +7,7 @@ public class Result {
 	private Square square;
 
 	public AtackStatus getResult() {
-		return result;
+		return this.result;
 	}
 
 	public void setResult(AtackStatus result) {
