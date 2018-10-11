@@ -7,14 +7,18 @@ import java.util.List;
 
 public class Board {
 	@JsonProperty List<Ship> shipList;
+
 	@JsonProperty List<Result> attkList;
+
 
 	/*
 	DO NOT change the signature of this method. It is used by the grading scripts.
 	 */
 	public Board() {
 		shipList = new ArrayList<Ship>();
-}
+
+	}
+
 
 	/*
 	DO NOT change the signature of this method. It is used by the grading scripts.
@@ -94,11 +98,10 @@ public class Board {
 	}
 
 	public List<Ship> getShips() {
-		//TODO implement
-		return null;
+		return shipList;
 	}
 	public void setShips(List<Ship> ships) {
-		//TODO implement
+		shipList = ships;
 	}
 
 	public List<Result> getAttacks() {
