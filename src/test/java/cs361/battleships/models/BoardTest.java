@@ -24,6 +24,13 @@ public class BoardTest {
         assertTrue(board.placeShip(new Ship("BATTLESHIP"), 1, 'A', true));
         assertTrue(board.placeShip(new Ship("DESTROYER"), 5, 'A', true));
         assertTrue(board.placeShip(new Ship("MINESWEEPER"), 10, 'E', false));
+        for (Ship ship: board.getShips())
+        {
+            for(Square sq: ship.getOccupiedSquares())
+            {
+                System.out.println(sq.getColumn() + " " + sq.getRow());
+            }
+        }
 
     }
 

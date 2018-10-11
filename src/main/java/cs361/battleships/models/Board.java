@@ -17,6 +17,7 @@ public class Board {
 	DO NOT change the signature of this method. It is used by the grading scripts.
 	 */
 	public boolean placeShip(Ship ship, int x, char y, boolean isVertical) {
+		System.out.println("PLACING SHIP AT: " + x + " " + y);
 		if (ship.setOccupiedSquares(x, y, isVertical))
 		{
 			for(Ship existingShip: shipList)
