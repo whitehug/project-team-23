@@ -41,6 +41,7 @@ function redrawGrid() {
     }
 
     game.playersBoard.ships.forEach((ship) => ship.occupiedSquares.forEach((square) => {
+        console.log(ship);
         document.getElementById("player").rows[square.row-1].cells[square.column.charCodeAt(0) - 'A'.charCodeAt(0)].classList.add("occupied");
 }));
     markHits(game.opponentsBoard, "opponent", "You won the game");
@@ -69,13 +70,14 @@ function cellClick() {
         console.log("SETUP");
         sendXhr("POST", "/place", {game: game, shipType: shipType, x: row, y: col, isVertical: vertical}, function(data) {
             game = data;
-
-            redrawGrid();
+            console.log("POSTED TO PLACE")
             placedShips++;
+            console.log(placedShips);
             if (placedShips == 3) {
                 isSetup = false;
                 registerCellListener((e) => {});
             }
+            redrawGrid();
         });
     } else {
         sendXhr("POST", "/attack", {game: game, x: row, y: col}, function(data) {
