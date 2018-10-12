@@ -21,19 +21,16 @@ public class Game {
         boolean successful = playersBoard.placeShip(ship, x, y, isVertical);
 
         if (!successful) {
-            System.out.println("FAILED PLACEMENT!");
             return false;
         }
 
         boolean opponentPlacedSuccessfully;
         do {
-            System.out.println("Placing ship for AI");
             // AI places random ships, so it might try and place overlapping ships
             // let it try until it gets it right
             Ship AIShip = new Ship(ship.getKind());
             opponentPlacedSuccessfully = opponentsBoard.placeShip(AIShip, randRow(), randCol(), randVertical());
         } while (!opponentPlacedSuccessfully);
-        System.out.println(playersBoard.getShips());
 
         return true;
     }
@@ -48,7 +45,6 @@ public class Game {
         }
         Result opponentAttackResult;
         do {
-            System.out.println("Attacking for opponent");
             // AI does random attacks, so it might attack the same spot twice
             // let it try until it gets it right
             opponentAttackResult = playersBoard.attack(randRow(), randCol());

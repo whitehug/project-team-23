@@ -25,19 +25,16 @@ public class Board {
 	DO NOT change the signature of this method. It is used by the grading scripts.
 	 */
 	public boolean placeShip(Ship ship, int x, char y, boolean isVertical) {
-		System.out.println("PLACING SHIP AT: " + x + " " + y);
 		if (ship.setOccupiedSquares(x, y, isVertical))
 		{
 			for(Ship existingShip: shipList)
 			{
 				for(Square sq: existingShip.getOccupiedSquares())
 				{
-					System.out.println("Part of ship located at: " + sq.getColumn() + ", " + sq.getRow());
 					for(Square sq2: ship.getOccupiedSquares())
 					{
 						if(sq.getColumn() == sq2.getColumn() && sq.getRow() == sq2.getRow())
 						{
-							System.out.println("COLLISION AT " + sq.getColumn() + ", " + sq.getRow());
 							return false;
 						}
 					}
@@ -63,7 +60,6 @@ public class Board {
 		List<Square> squaresToRemove = new ArrayList<Square>();
 
 		if (((x >= 1) && (x <= 10)) && ((y >= 'A') && (y <= 'J'))) {
-			System.out.println("ATTACKING: " + x + " " + y);
 			//loop through ship list
 			//it's a miss unless it hits.
 			attk = AtackStatus.MISS;
@@ -74,7 +70,6 @@ public class Board {
 				for (Square sq : existingShip.getOccupiedSquares()) {
 
 					//if x == shipx && y == shipy
-					System.out.println("attack: " + x + ", " + y + " :: " + sq.getRow() + ", " + sq.getColumn());
 					if ((x == sq.getRow()) && (y == sq.getColumn())) {
 						result.setShip(existingShip);
 						squaresToRemove.add(sq);
@@ -96,8 +91,6 @@ public class Board {
 			result.setResult(attk);
 			attkList.add(result);
 		}
-		System.out.println(attkList);
-		System.out.println(result.getResult());
 		return result;
 	}
 
