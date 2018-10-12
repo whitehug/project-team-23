@@ -68,6 +68,7 @@ public class Board {
 			//it's a miss unless it hits.
 			attk = AtackStatus.MISS;
 			result.setResult(attk);
+			result.setLocation(new Square(x, y));
 			for (Ship existingShip : shipList) {
 				//loop through squares that ships occupy
 				for (Square sq : existingShip.getOccupiedSquares()) {
@@ -86,15 +87,16 @@ public class Board {
 					}
 				}
 
-                attkList.add(result);
 				existingShip.getOccupiedSquares().removeAll(squaresToRemove);
 			}
+			attkList.add(result);
 		}
 		else{
 			attk = AtackStatus.INVALID;
 			result.setResult(attk);
 			attkList.add(result);
 		}
+		System.out.println(attkList);
 		System.out.println(result.getResult());
 		return result;
 	}
