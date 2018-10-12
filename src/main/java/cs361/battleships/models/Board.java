@@ -62,6 +62,7 @@ public class Board {
 		AtackStatus attk;
 		List<Square> squaresToRemove = new ArrayList<Square>();
 
+
 		if (((x >= 1) && (x <= 10)) && ((y >= 'A') && (y <= 'J'))) {
 			System.out.println("ATTACKING: " + x + " " + y);
 			//loop through ship list
@@ -79,15 +80,43 @@ public class Board {
 						result.setShip(existingShip);
 						squaresToRemove.add(sq);
 
-						//its a hit
-						attk = AtackStatus.HIT;
-						result.setResult(attk);
-						break;
-						//but is messing up the code at the moment
+						//System.out.println("Ship occupied squares count: " + existingShip.getOccupiedSquares().size());
+						if(existingShip.getOccupiedSquares().size() == 1) {
+
+							//if occupied squares length is 0,
+							attk = AtackStatus.SUNK;
+							result.setResult(attk);
+							break;
+
+						} else {
+							//its a hit
+							attk = AtackStatus.HIT;
+							result.setResult(attk);
+							break;
+							//but is messing up the code at the moment
+						}
 					}
 				}
 
 				existingShip.getOccupiedSquares().removeAll(squaresToRemove);
+				//System.out.println("Ship occupied squares count: " + existingShip.getOccupiedSquares().size());
+			}
+
+			int counter = 1;
+			for(Ship existingShip : shipList) {
+				if(existingShip.getOccupiedSquares().size() == 0) {
+					if(counter == shipList.size()) {
+						System.out.println("Blah");
+						attk = AtackStatus.SURRENDER;
+						result.setResult(attk);
+						break;
+					} else {
+						counter++;
+						continue;
+					}
+				} else {
+					break;
+				}
 			}
 			attkList.add(result);
 		}

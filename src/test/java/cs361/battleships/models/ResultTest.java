@@ -37,4 +37,30 @@ public class ResultTest {
         assertEquals(AtackStatus.INVALID,s.getResult());
 
     }
+
+    @Test
+    public void SunkTest(){
+        Board b = new Board();
+        Ship ship = new Ship("MINESWEEPER");
+        Ship ship2 = new Ship("MINESWEEPER");
+        b.placeShip(ship,10,'D',false);
+        b.placeShip(ship2, 5, 'A', false);
+        Result r = b.attack(10, 'D');
+        Result s = b.attack(10, 'E');
+        assertEquals(AtackStatus.HIT, r.getResult());
+        assertEquals(AtackStatus.SUNK, s.getResult());
+
+    }
+
+
+    @Test
+    public void SurrenderTest(){
+        Board b = new Board();
+        Ship ship = new Ship("MINESWEEPER");
+        b.placeShip(ship,10,'D',false);
+        Result r = b.attack(10, 'D');
+        Result s = b.attack(10, 'E');
+        assertEquals(AtackStatus.HIT, r.getResult());
+        assertEquals(AtackStatus.SURRENDER, s.getResult());
+    }
 }
