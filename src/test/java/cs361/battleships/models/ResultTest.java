@@ -12,6 +12,7 @@ public class ResultTest {
     Board b = new Board();
     Ship ship = new Ship("MINESWEEPER");
     b.placeShip(ship,2,'C',false);
+    System.out.println(b.getShips().get(0).getOccupiedSquares().get(0).getColumn());
     Result r = b.attack(2,'C');
     assertEquals(AtackStatus.HIT,r.getResult());
     }

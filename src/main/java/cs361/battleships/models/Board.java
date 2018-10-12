@@ -16,6 +16,7 @@ public class Board {
 	 */
 	public Board() {
 		shipList = new ArrayList<Ship>();
+		attkList = new ArrayList<Result>();
 
 	}
 
@@ -59,40 +60,43 @@ public class Board {
 	public Result attack(int x, char y) {
 		Result result = new Result();
 		AtackStatus attk;
+		List<Square> squaresToRemove = new ArrayList<Square>();
 
 		if (((x >= 1) && (x <= 10)) && ((y >= 'A') && (y <= 'J'))) {
 			System.out.println("ATTACKING: " + x + " " + y);
 			//loop through ship list
+			//it's a miss unless it hits.
+			attk = AtackStatus.MISS;
+			result.setResult(attk);
+			result.setLocation(new Square(x, y));
 			for (Ship existingShip : shipList) {
 				//loop through squares that ships occupy
 				for (Square sq : existingShip.getOccupiedSquares()) {
 
 					//if x == shipx && y == shipy
+					System.out.println("attack: " + x + ", " + y + " :: " + sq.getRow() + ", " + sq.getColumn());
 					if ((x == sq.getRow()) && (y == sq.getColumn())) {
 						result.setShip(existingShip);
-						existingShip.getOccupiedSquares().remove(sq);
+						squaresToRemove.add(sq);
 
 						//its a hit
 						attk = AtackStatus.HIT;
 						result.setResult(attk);
-						//attkList.add(attkList);  //meant to add to a list of attacks that have been made
+						break;
 						//but is messing up the code at the moment
-					} else {
-
-						//it's a miss
-						attk = AtackStatus.MISS;
-						result.setResult(attk);
-						//attkList.add(attkList);
 					}
 				}
 
+				existingShip.getOccupiedSquares().removeAll(squaresToRemove);
 			}
+			attkList.add(result);
 		}
 		else{
 			attk = AtackStatus.INVALID;
 			result.setResult(attk);
-			//attkList.add(a)
+			attkList.add(result);
 		}
+		System.out.println(attkList);
 		System.out.println(result.getResult());
 		return result;
 	}
